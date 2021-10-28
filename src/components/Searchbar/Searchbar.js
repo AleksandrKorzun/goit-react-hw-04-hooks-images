@@ -15,8 +15,7 @@ const Searchbar = ({ search, onHandleChange, onHandleSubmit}) => {
                         autoComplete="off"
                         autoFocus
                         placeholder="Search images and photos"
-                        onChange={onHandleChange}
-                        value={search}
+                        
                     />
                 </label>
             </form>

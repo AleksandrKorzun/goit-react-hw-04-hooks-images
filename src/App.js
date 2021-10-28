@@ -17,17 +17,14 @@ const App = () => {
   const [loader, setLoader] = useState(false)
 
   useEffect(() => {
-    if (page > 1) {
-      morePictures()
-    }
-  }, [page])
-  const onHandleChange = (e) => {
-    setSearch(e.target.value)
-  }
+    page > 1 && morePictures()
+    page === 1 && search && firstSearch()
+  }, [page, search])
+  
   const onHandleSubmit = (e) => {
     e.preventDefault()
     setPage(1)
-    firstSearch()
+    setSearch(e.target.elements[1].value)
     setTimeout(() => {
       scroll()
     }, 600); 
@@ -68,8 +65,6 @@ const onToggleLoader = () => {
     <>
       <Searchbar 
         onHandleSubmit={onHandleSubmit}
-        onHandleChange={onHandleChange}
-        search={search}
       />
       {loader && <Loader/>}
       <ImageGallery pictures={picture} onToggleModal={onModalImageUrl}/>
